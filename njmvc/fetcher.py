@@ -14,7 +14,12 @@ def get_next_available(apt_id, loc_id):
         'locationId': loc_id
     }
 
-    resp = requests.get(url=ENDPOINT, params=params)
+    
+    try:
+        resp = requests.get(url=ENDPOINT, params=params)
+    except:
+        print("[WARN] Some exception occured when making request")
+        return None
 
     if resp.status_code != 200:
         # oops, request failure

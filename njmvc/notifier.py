@@ -21,3 +21,13 @@ def send_msg(client, loc_name, apt_date, from_num, to_num):
     )
 
     # hopefully this gets sent, using status callbacks too annoying
+
+def send_removal_msg(client, loc_name, apt_date, from_num, to_num):
+    body = f"Someone took {loc_name} on {apt_date.strftime(MSG_DATE_FORMAT)}"
+
+    msg = client.messages.create(
+        body=body,
+        from_=from_num,
+        to=to_num
+    )
+    
