@@ -36,8 +36,10 @@ if __name__ == '__main__':
                 # or an SSL error occured
                 # either way, doesn't hurt to send this
                 # TODO: make some way to differentiate between this
-                print(f"[INFO] Appointment at {location} on {apt_date} taken")
                 appts_notified.remove((location, apt_date))
-                send_removal_msg(client, location, apt_date, FROM_NUMBER, TO_NUMBER)
+
+                if START_DATE <= apt_date and apt_date <= END_DATE:
+                    print(f"[INFO] Appointment at {location} on {apt_date} taken")
+                    send_removal_msg(client, location, apt_date, FROM_NUMBER, TO_NUMBER)
 
         time.sleep(FETCH_INTERVAL / 1000)
