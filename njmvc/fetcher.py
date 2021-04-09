@@ -13,7 +13,6 @@ def get_next_available(apt_id, loc_id):
         'appointmentTypeId': apt_id,
         'locationId': loc_id
     }
-
     
     try:
         resp = requests.get(url=ENDPOINT, params=params)
