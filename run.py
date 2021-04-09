@@ -31,7 +31,7 @@ if __name__ == '__main__':
 
         # send removal notification messages
         for location, apt_date in list(appts_notified):
-            if location not in appts:
+            if location not in appts or apt_date < appts[location]:
                 # this means that the appointment was taken
                 # or an SSL error occured
                 # either way, doesn't hurt to send this
