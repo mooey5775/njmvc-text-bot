@@ -33,8 +33,16 @@ def get_next_available(apt_id, loc_id):
     if next_apt['next'] == "No Appointments Available":
         return None
 
+    date_str = next_apt['next'].split('<br/> ')
+
+    if len(date_str) < 2:
+        print("[WARN] Weird error with date formatting")
+        return None
+
+    date_str = date_str[1]
+
     try:
-        avail_date = datetime.strptime(next_apt['next'], DATE_FORMAT)
+        avail_date = datetime.strptime(date_str, DATE_FORMAT)
     except:
         # I don't care what errors this throws
         # The show must go on
